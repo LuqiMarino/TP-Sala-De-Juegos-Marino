@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: 'error', component: ErrorComponent },
     { path: 'quiensoy', component: QuiensoyComponent },
     { path: 'home', component: HomeComponent },
+    { path: '', component: HomeComponent },
     { path: '**', redirectTo: 'error', pathMatch: 'full' }  
 ];
 

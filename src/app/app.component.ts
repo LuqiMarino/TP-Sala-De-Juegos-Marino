@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SalaDeJuegosLucasMarino';
+
+  constructor(private router: Router){ }
+
+  IrALogin(){
+    this.router.navigate(['login']);
+  }
+
+  IrAHome(){
+    this.router.navigate(['home']);
+  }
+
+  IrAQuienSoy(){
+    this.router.navigate(['quiensoy']);
+  }
 }

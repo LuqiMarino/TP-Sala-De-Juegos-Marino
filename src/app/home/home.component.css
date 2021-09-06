@@ -1,0 +1,43 @@
+#ahorcado{
+    background-image: url("./../../assets/ahorcado.PNG");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    margin-left: 2%;
+}
+
+#mayormenor{
+    background-image: url("./../../assets/mayormenor.PNG");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    margin-left: 2%;
+}
+
+#preguntados{
+    background-image: url("./../../assets/preguntados.PNG");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    margin-left: 2%;
+}
+
+#poker{
+    background-image: url("./../../assets/poker.PNG");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+    margin-left: 2%;
+}

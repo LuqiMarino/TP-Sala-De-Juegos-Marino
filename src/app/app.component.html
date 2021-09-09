@@ -1,7 +1,8 @@
 <div id="menu" style="background-color: lightgrey;">
-    <button type="button" (click)="IrALogin()">Login</button>
-    <button type="button" (click)="IrAHome()">Home</button>
-    <button type="button" (click)="IrAQuienSoy()">¿Quien Soy?</button> <br><br>
+    <!-- <button type="button" (click)="IrALogin()" [hidden]="!hayUsuarioLogueado">Log in</button> -->
+    <button type="button" (click)="IrALogin()" [hidden]="!hayUsuarioLogueado">Log Out</button>
+    <button type="button" (click)="IrAHome()" [hidden]="!hayUsuarioLogueado">Home</button>
+    <button type="button" (click)="IrAQuienSoy()" [hidden]="!hayUsuarioLogueado">¿Quien Soy?</button> <br><br>
     
 </div>
 <router-outlet></router-outlet>

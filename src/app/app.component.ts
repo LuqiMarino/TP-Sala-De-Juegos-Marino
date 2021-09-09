@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { textChangeRangeIsUnchanged } from 'typescript';
+import { AuthServiceService } from './servicios/auth-service.service'
 
 @Component({
   selector: 'app-root',
@@ -8,10 +10,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'SalaDeJuegosLucasMarino';
+  hayUsuarioLogueado:boolean = false;
+  constructor(private router: Router, private auth:AuthServiceService){ }
 
-  constructor(private router: Router){ }
 
   IrALogin(){
+    this.auth.signOut();
     this.router.navigate(['login']);
   }
 
@@ -21,5 +25,9 @@ export class AppComponent {
 
   IrAQuienSoy(){
     this.router.navigate(['quiensoy']);
+  }
+
+  RefrescarUsuarioLogueado(){
+    this.hayUsuarioLogueado = this.auth.ValidaHayUsuarioLogueado();
   }
 }

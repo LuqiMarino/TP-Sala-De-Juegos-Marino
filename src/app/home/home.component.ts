@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../app.component';
+import { Usuario } from '../clases/Usuario';
+import { AuthServiceService } from './../servicios/auth-service.service'
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  usuarioLogueado:Usuario = new Usuario("", "");
+  constructor(private app:AppComponent, private auth:AuthServiceService) {
+    this.usuarioLogueado = this.auth.getUsuarioLogueado();
+   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.app.RefrescarUsuarioLogueado();
+    }, 0);
   }
 
 }

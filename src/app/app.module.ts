@@ -11,9 +11,10 @@ import { RegistroComponent } from './registro/registro.component';
 import { environment } from 'src/environments/environment';
 
 import { initializeApp } from 'firebase/app';
-// import {} from 'firebase/database'
+import { getFirestore } from 'firebase/firestore';
 
 const app = initializeApp(environment.firebaseConfig);
+const db = getFirestore();
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ const app = initializeApp(environment.firebaseConfig);
     HomeComponent,
     QuiensoyComponent,
     ErrorComponent,
-    RegistroComponent
+    RegistroComponent,
   ],
   imports: [
     BrowserModule,

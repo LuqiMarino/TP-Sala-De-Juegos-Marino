@@ -2,49 +2,62 @@ import { Injectable } from '@angular/core';
 //import { Auth } from 'firebase/auth';
 import { Usuario } from './../clases/Usuario';
 import { Router } from '@angular/router';
+import { DbService } from './db.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  constructor(private router:Router) { }
+  public mailAux?:string;
+  public pwAux?:string;
+
+  constructor(private router:Router, private db:DbService) { }
+
 
   public async signIn(usuario: Usuario){
-    var mail = localStorage.getItem("mail");
-    var contraseña = localStorage.getItem("contraseña");
-    if (mail == usuario.mail && contraseña == usuario.contraseña){
-      this.router.navigate(['home']);
-    }
-    // return this.auth.signIn(usuario.mail, usuario.contraseña); signInWithEmailAndPassword(usuario.mail, usuario.contraseña);
+    this.db.validarUsuarioRegistrado(usuario).then((data) => {
+      var str = JSON.stringify(data);
+      var json = JSON.parse(str);
+      var user = new Usuario(json["mail"], json["password"], json["alias"]);
+      var estaRegistrado = user.mail.length > 0 && user.password.length > 0 && user.alias.length > 0
+      if (estaRegistrado){
+        this.db.usuarioLogueado = user;
+        this.db.grabarLogUsuario(user);
+        this.router.navigate(['home']);
+      }
+      
+        
+      // else
+      //   MOSTRAR ERROR QUE NO PUDO PUDO INGRESAR
+    });
+    
   }
 
   public async signOut(){
-    localStorage.setItem("mail", "");
-    localStorage.setItem("contraseña", "");
-    // await this.auth.signOut();
+    this.db.usuarioLogueado = new Usuario("", "");
   }
 
   public async register(usuario:Usuario){
-    localStorage.setItem("mail", usuario.mail);
-    localStorage.setItem("contraseña", usuario.contraseña);
-    //return this.fireAuth.createUserWithEmailAndPassword(usuario.mail, usuario.contraseña);
+    this.db.validarUsuarioRegistrado(usuario).then((estaRegistrado) => {
+      if (!estaRegistrado)
+        this.db.agregarUsuario(usuario);
+      // else
+      //   MOSTRAR ERROR
+    });
+    
   }
 
   public ValidaHayUsuarioLogueado(){
-    var mail = localStorage.getItem("mail");
-    if (mail == null || mail == "")
-      return false;
-    else
-      return true;
+    return this.db.usuarioLogueado.mail != "";
   }
 
   public getUsuarioLogueado(){
-    var mail = localStorage.getItem("mail") as string;
-    var contraseña = localStorage.getItem("contraseña") as string;
-    if (mail != null && contraseña != null)
-      return new Usuario(mail, contraseña);
+    var mail = this.db.usuarioLogueado.mail;
+    var contraseña = this.db.usuarioLogueado.password;
+    var alias = this.db.usuarioLogueado.alias;
+    if (mail != "" && contraseña != "")
+      return new Usuario(mail, contraseña, alias);
     else
       return new Usuario("", "");
-    
   }
 }

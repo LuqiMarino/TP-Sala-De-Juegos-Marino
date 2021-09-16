@@ -1,9 +1,14 @@
 export class Usuario{
     mail:string;
-    contraseña:string;
+    password:string;
+    alias:string;
 
-    constructor (mail:string, contraseña:string){
+    constructor (mail:string, password:string, alias?:string){
         this.mail = mail;
-        this.contraseña = contraseña;
+        this.password = password;
+        if (alias != null)
+            this.alias = alias;
+        else
+            this.alias = "";
     }
 }

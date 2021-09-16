@@ -13,7 +13,6 @@ export class AppComponent {
   hayUsuarioLogueado:boolean = false;
   constructor(private router: Router, private auth:AuthServiceService){ }
 
-
   IrALogin(){
     this.auth.signOut();
     this.router.navigate(['login']);

@@ -1,0 +1,65 @@
+#fondo{
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+    opacity: 1;
+}
+
+#principal{
+    position: fixed;
+    z-index: 5;
+}
+
+label{
+    font-size: 44px;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    color: black;
+    font-weight: bold;
+}
+
+h1{
+    font-size: 44px;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+    color: white;
+}
+
+#btnLog{
+    width: 350px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(28, 230, 38);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#btnLimp{
+    width: 350px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(245, 242, 60);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#btnReg{
+    width: 350px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(35, 216, 240);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#btnAcceso{
+    width: 350px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(180, 29, 218);
+    font-weight: bold;
+    font-size: 18px;
+}

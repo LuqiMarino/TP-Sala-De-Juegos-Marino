@@ -1,13 +1,13 @@
 
+<img id="fondo" src="../../assets//fondo3.PNG" alt="">
 <div style="background-color: lightgrey;">
-    <h1 style="margin-left: 15%;">¿A que querés jugar?</h1><br>
-    <button id="ahorcado" (click)="AbrirAhorcado()"></button>
-    <button id="mayormenor" (click)="AbrirMayorMenor()"></button>
-    <button id="preguntados"></button>
-    <button id="poker"></button>
-    <br><br><br><br><br><br><br><br><br><br><br><br>
-    <h1>Tus datos:</h1>
-    <h3>Alias: {{usuarioLogueado.alias}}</h3>
-    <h3>Mail: {{usuarioLogueado.mail}}</h3>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <h1 style="margin-left: 1.5%; z-index: 3;">¿A que querés jugar?</h1><br>
+    <div class ="d-flex flex-row justify-content-between">
+        <button id="ahorcado" (click)="AbrirAhorcado()"></button>
+        <button id="mayormenor" (click)="AbrirMayorMenor()"></button>
+        <button id="preguntados"></button>
+        <button id="poker"></button>
+    </div>
 </div>
+

@@ -1,12 +1,21 @@
+#fondo{
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    position: fixed;
+    opacity: 1;
+}
+
 #ahorcado{
     background-image: url("./../../assets/ahorcado.PNG");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: white;
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 420px;
     margin-left: 2%;
+    z-index: 3;
+    opacity: 0.9;
 }
 
 #mayormenor{
@@ -15,9 +24,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 420px;
     margin-left: 2%;
+    z-index: 3;
+    opacity: 0.9;
 }
 
 #preguntados{
@@ -26,9 +37,11 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 420px;
     margin-left: 2%;
+    z-index: 3;
+    opacity: 0.9;
 }
 
 #poker{
@@ -37,7 +50,18 @@
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;
-    width: 200px;
-    height: 200px;
+    width: 500px;
+    height: 420px;
     margin-left: 2%;
+    z-index: 3;
+    opacity: 0.9;
+    margin-right: 2%;
+}
+
+h1{
+    font-size: 84px;
+    color: rgb(180, 29, 218);
+    text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+    z-index: 3;
+    position: sticky;
 }

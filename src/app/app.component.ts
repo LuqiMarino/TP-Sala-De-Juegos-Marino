@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { textChangeRangeIsUnchanged } from 'typescript';
 import { AuthServiceService } from './servicios/auth-service.service'
 
 @Component({
@@ -11,7 +10,8 @@ import { AuthServiceService } from './servicios/auth-service.service'
 export class AppComponent {
   title = 'SalaDeJuegosLucasMarino';
   hayUsuarioLogueado:boolean = false;
-  constructor(private router: Router, private auth:AuthServiceService){ }
+  usuarioAlias:string = "";
+  constructor(private router: Router, private auth:AuthServiceService){}
 
   IrALogin(){
     this.auth.signOut();
@@ -27,6 +27,7 @@ export class AppComponent {
   }
 
   RefrescarUsuarioLogueado(){
-    this.hayUsuarioLogueado = this.auth.getUsuarioLogueado().mail != "";
+    this.usuarioAlias = "this.auth.getUsuarioLogueado().alias";
+    this.hayUsuarioLogueado = this.usuarioAlias != "";
   }
 }

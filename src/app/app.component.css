@@ -1,0 +1,10 @@
+.container {
+    max-width: 96%;
+  }
+  
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+  }
+.site-header a {
+    color: #a5a3a3;
+  }

@@ -1,0 +1,20 @@
+<div style="margin-left: 30%; margin-top: 2%;">
+    
+    <div *ngIf="!mazo.empezoElJuego">
+        <button (click)="ComenzarJuego()" style="width: 510px;">Comenzar Juego</button>
+    </div>
+    <br><br><br>
+    <img [src]='carta1.img'>
+    <img [src]='carta2.img' style="margin-left: 60px;">
+    <br><br>
+    <div *ngIf="mazo.empezoElJuego">
+        <button (click)="Aplicar(1)" style="width: 170px;" [disabled]="deshabilitar">Mayor (+1)</button>
+        <button (click)="Aplicar(2)" style="width: 170px;" [disabled]="deshabilitar">Igual (+10)</button>
+        <button (click)="Aplicar(3)" style="width: 170px;" [disabled]="deshabilitar">Menor (+1)</button>
+        <br><br><br><br>
+        <h1>Manos: {{manos}}/5</h1>
+        <h1>Puntos: {{puntos}}</h1>
+    </div><br><br>
+    <button *ngIf="reiniciar" (click)="Guardar(false)" style="width: 510px;">Guardar y Reiniciar</button><br>
+    <button *ngIf="reiniciar" (click)="Guardar(true)" style="width: 510px;">Guardar y Salir</button>
+</div> 

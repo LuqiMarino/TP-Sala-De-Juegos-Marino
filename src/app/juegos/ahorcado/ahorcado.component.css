@@ -1,0 +1,27 @@
+.letraAdivinada{
+    font-size: 120px; 
+    margin-left: 30px; 
+    min-width: 100px; 
+    text-align: center;     
+    position: sticky; 
+    /* initial */
+    border-bottom: 5px solid black;
+}
+
+.letraNoAdivinada{
+    font-size: 120px; 
+    margin-left: 30px; 
+    min-width: 100px; 
+    text-align: center; 
+    position: sticky;
+    border-bottom: 5px solid black;
+    color: white;
+}
+
+.btnLetra{
+    width: 75px;
+    height: 75px;
+    margin: 3px;
+    font-size: 24px;
+    font-weight: bold;
+}

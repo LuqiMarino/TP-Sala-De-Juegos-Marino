@@ -47,10 +47,6 @@ export class AuthServiceService {
     
   }
 
-  public ValidaHayUsuarioLogueado(){
-    return this.db.usuarioLogueado.mail != "";
-  }
-
   public getUsuarioLogueado(){
     var mail = this.db.usuarioLogueado.mail;
     var contraseña = this.db.usuarioLogueado.password;

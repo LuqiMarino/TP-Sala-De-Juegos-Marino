@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -12,6 +14,8 @@ import { environment } from 'src/environments/environment';
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { MayorMenorComponent } from './juegos/mayor-menor/mayor-menor.component';
+import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore();
@@ -24,10 +28,14 @@ const db = getFirestore();
     QuiensoyComponent,
     ErrorComponent,
     RegistroComponent,
+    MayorMenorComponent,
+    AhorcadoComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

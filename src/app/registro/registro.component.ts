@@ -52,9 +52,14 @@ export class RegistroComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("pw")).style.border = "1px solid grey";
       (<HTMLInputElement>document.getElementById("alias")).style.border = "1px solid grey";
       var usuario = new Usuario(this.mail, this.pw, this.alias);
-      this.db.agregarUsuario(usuario).then(()=>{
-        this.authService.signIn(usuario);
-      });
+      this.db.validarUsuarioRegistrado(usuario)
+        .then(()=>{console.log("No fue posible agregar el usuario!")})
+        .catch(()=>{
+          this.db.agregarUsuario(usuario).then(()=>{
+          this.authService.signIn(usuario);
+        });
+      }).catch(()=>{console.log("El usuario ya esta registrado!")});
+      
       
     }
     else{

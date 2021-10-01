@@ -13,29 +13,29 @@ export class DbService {
   constructor() { }
 
   public async agregarUsuario(user:Usuario){
-    var huboError = false;
-      try {
-        const docRef = await addDoc(collection(this.db, "usuarios"), { 
-          mail: user.mail,
-          password: user.password,
-          alias: user.alias
-        });
-      
-        //console.log("Documento agregado ID: ", docRef.id);
-        //ACA PODRIA MODIFICAR EL DOCUMENTO Y PONERLE EL ID
-      } catch (e) {
-        huboError = true;
-        console.error("Error: ", e);
-      }
+    var huboError = false;    
+    try {
+      const docRef = await addDoc(collection(this.db, "usuarios"), { 
+        mail: user.mail,
+        password: user.password,
+        alias: user.alias
+      });
+    
+      //console.log("Documento agregado ID: ", docRef.id);
+      //ACA PODRIA MODIFICAR EL DOCUMENTO Y PONERLE EL ID
+    } catch (e) {
+      huboError = true;
+      console.error("Error: ", e);
+    }
 
-      return new Promise((resolve, reject)=>{
-        setTimeout(() => {
-          if (!huboError)
-            resolve(true);
-          else 
-            reject();
-        }, 1000);
-      })
+    return new Promise((resolve, reject)=>{
+      setTimeout(() => {
+        if (!huboError)
+          resolve(true);
+        else 
+          reject();
+      }, 1000);
+    });
     
   }
 
@@ -49,6 +49,35 @@ export class DbService {
         mail: user.mail,
         alias: user.alias,
         fecha: fechaHora
+      });
+    
+      //console.log("Documento agregado ID: ", docRef.id);
+      //ACA PODRIA MODIFICAR EL DOCUMENTO Y PONERLE EL ID
+    } catch (e) {
+      console.error("Error: ", e);
+    }
+  }
+
+  public async grabarJuego(juego:string, alias:string, puntaje:number){
+    try {
+      var doc = "";
+      switch(juego){
+        case "mayormenor":
+          doc = "puntajesMayorMenor";
+          break;
+        case "preguntados":
+          doc = "puntajesPreguntados";
+          break;
+        case "ahorcado":
+          doc = "puntajesAhorcado";
+          break;
+        case "poker":
+          doc = "puntajesPoker";
+          break;
+      }
+      const docRef = await addDoc(collection(this.db, doc), { 
+        alias: alias,
+        puntaje: puntaje
       });
     
       //console.log("Documento agregado ID: ", docRef.id);
@@ -89,7 +118,7 @@ export class DbService {
             }
           }
         }
-        }).catch(()=>{reject()}); //creo q puedo borrar esto 
+        }).catch(()=>{reject()}); 
         
       }, 1000);
     });

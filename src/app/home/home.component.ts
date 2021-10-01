@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { Usuario } from '../clases/Usuario';
 import { AuthServiceService } from './../servicios/auth-service.service'
@@ -11,7 +12,7 @@ import { AuthServiceService } from './../servicios/auth-service.service'
 export class HomeComponent implements OnInit {
 
   usuarioLogueado:Usuario = new Usuario("", "");
-  constructor(private app:AppComponent, private auth:AuthServiceService) {
+  constructor(private app:AppComponent, private auth:AuthServiceService, private router: Router) {
     this.usuarioLogueado = this.auth.getUsuarioLogueado();
    }
 
@@ -19,6 +20,14 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.app.RefrescarUsuarioLogueado();
     }, 0);
+  }
+
+  AbrirMayorMenor(){
+    this.router.navigate(['mayormenor']);
+  }
+
+  AbrirAhorcado(){
+    this.router.navigate(['ahorcado']);
   }
 
 }

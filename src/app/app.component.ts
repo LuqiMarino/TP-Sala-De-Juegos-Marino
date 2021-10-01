@@ -27,6 +27,6 @@ export class AppComponent {
   }
 
   RefrescarUsuarioLogueado(){
-    this.hayUsuarioLogueado = this.auth.ValidaHayUsuarioLogueado();
+    this.hayUsuarioLogueado = this.auth.getUsuarioLogueado().mail != "";
   }
 }

@@ -3,7 +3,7 @@ export class Letra{
     public adivinada:boolean;
     public yaPresionada:boolean;
     constructor(letra:string){
-        this.letra = letra;
+        this.letra = letra.toUpperCase();
         this.adivinada = false;
         this.yaPresionada = false;
     }

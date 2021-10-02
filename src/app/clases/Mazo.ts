@@ -42,6 +42,7 @@ export class Carta{
     public numero:string;
     public palo:string;
     public img:string;
+    public selected = false;
     
     constructor(numero:string, palo:string){
         this.numero = numero;

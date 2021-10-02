@@ -2,10 +2,7 @@
     font-size: 120px; 
     margin-left: 30px; 
     min-width: 100px; 
-    text-align: center;     
-    position: sticky; 
-    /* initial */
-    border-bottom: 5px solid black;
+    text-align: center;   
 }
 
 .letraNoAdivinada{
@@ -13,9 +10,7 @@
     margin-left: 30px; 
     min-width: 100px; 
     text-align: center; 
-    position: sticky;
-    border-bottom: 5px solid black;
-    color: white;
+    color: black;    
 }
 
 .btnLetra{
@@ -24,4 +19,24 @@
     margin: 3px;
     font-size: 24px;
     font-weight: bold;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+#fondo{
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    position: fixed;
+    opacity: 0.3;
+}
+
+#btnReiniciar{
+    left: 10.5%;
+    position: absolute; 
+    width: 717px;
+    border-radius: 15px;
+    border: solid 2px black;   
+    font-weight: bold;
+    font-size: 18px;
 }

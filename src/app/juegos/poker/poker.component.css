@@ -1,0 +1,117 @@
+#fondo{
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    position: fixed;
+    opacity: 0.4;
+}
+
+#cartasJug{
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 4%;
+}
+
+h2{
+    font-weight: bold;
+    position: absolute;
+    z-index: 3;
+}
+
+h5{
+    font-weight: bold;
+    position: absolute;
+    z-index: 3;
+}
+
+h4{
+    font-weight: bold;
+    position: absolute;
+    text-align: right;
+    z-index: 3;
+}
+
+.explicacion{
+    left: 5%;
+    position: absolute;
+    z-index: 3;
+}
+
+#btnValidar{
+    width: 500px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(28, 230, 38);
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    left: 2%;
+    bottom: 3%;
+    z-index: 3;
+}
+
+#btnComenzar{
+    width: 600px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(28, 230, 38);
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    left: 30%;
+    bottom: 30%;
+}
+
+#btnReiniciar{
+    width: 500px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(9, 234, 250);
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    right: 5%;
+    bottom: 3%;
+}
+
+#btnGuardar{
+    width: 500px;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(9, 234, 250);
+    font-weight: bold;
+    font-size: 18px;
+    position: absolute;
+    right: 5%;
+    bottom: 8%;
+}
+
+#imgCarta{
+    width: 130px; 
+    height: 175px;
+    position: absolute;
+}
+
+.selected{
+    border: 5px solid rgb(27, 228, 27);
+    border-radius: 10px;
+}
+
+.unSelected{
+    border: 5px solid rgb(252, 12, 4);
+    border-radius: 10px;
+}
+
+#ranking{
+    width: 280px; 
+    height: 380px; 
+    position: sticky;
+    bottom: 60%;
+    left: 80%;
+    border: 3px solid black;
+    border-radius: 10px;
+}

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Letra } from 'src/app/clases/Letra';
+import { AuthServiceService } from 'src/app/servicios/auth-service.service';
+import { DbService } from 'src/app/servicios/db.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -13,8 +15,9 @@ export class AhorcadoComponent implements OnInit {
   palabraEnJuego:Array<Letra> = new Array<Letra>();
   empezoElJuego=false; reiniciar = false;
   cantidadErrores = 0; puntos = 0; totalDePuntos = 0;
+  letraVacia = "A";
   
-  constructor(private router:Router){}
+  constructor(private router:Router, private auth:AuthServiceService, private db:DbService){}
 
   ngOnInit(){
     this.ComenzarJuego();
@@ -65,34 +68,35 @@ export class AhorcadoComponent implements OnInit {
   }
 
   ValidarLetra(letra:string){
-    this.DeshabilitarLetra(letra); 
-    var indexPalabra = this.palabraEnJuego.findIndex(a => a.letra.toUpperCase() == letra && a.adivinada == false);
-    
-    if (indexPalabra == -1){
-      this.cantidadErrores++;
-      this.ValidarCantidadErrores();
-    }
-    else{
-      this.palabraEnJuego[indexPalabra].adivinada = true;
-      if (this.ValidarGano()){
-        this.puntos = this.puntos + this.totalDePuntos;
-        this.reiniciar = true;
+    if (!this.reiniciar){
+      this.DeshabilitarLetra(letra); 
+      var indexPalabra = this.palabraEnJuego.findIndex(a => a.letra.toUpperCase() == letra && a.adivinada == false);
+      
+      if (indexPalabra == -1){
+        this.cantidadErrores++;
+        this.ValidarCantidadErrores();
       }
-      else
-        this.ValidarLetraDeNuevo(letra);
+      else{
+        this.palabraEnJuego[indexPalabra].adivinada = true;
+        if (this.ValidarGano()){
+          this.puntos = this.puntos + this.totalDePuntos;
+          this.reiniciar = true;
+        }
+        else
+          this.ValidarLetraDeNuevo(letra);
+      }
     }
+    
   }
 
-  ReiniciarJuego(){    
-    setTimeout(() => {
-      this.reiniciar = false;
-      this.cantidadErrores = 0;
-      this.totalDePuntos = 0;
-      this.palabras = []; this.letras1 = []; this.letras2 = []; this.letras3 = []; this.palabraEnJuego = [];
-      this.empezoElJuego = true;
+  ReiniciarJuego(reiniciar:boolean){
+    this.reiniciar = false;
+    this.cantidadErrores = 0;
+    this.totalDePuntos = 0;
+    this.palabras = []; this.letras1 = []; this.letras2 = []; this.letras3 = []; this.palabraEnJuego = [];
+    this.empezoElJuego = true;
+    if (reiniciar)
       this.ComenzarJuego();
-    }, 1500);
-    
   }
 
   ValidarGano():boolean{
@@ -154,18 +158,12 @@ export class AhorcadoComponent implements OnInit {
   }
   
   
-  Guardar(salir:boolean){   
-    // var alias = this.auth.getUsuarioLogueado().alias;
-    // this.db.grabarJuego("mayormenor", alias, this.puntos);
-    // this.reiniciar = false;
-    // this.deshabilitar = false; 
-    // this.puntos = 0;
-    // this.manos = 0;
-
-    if (salir)
-      this.router.navigate(['home']);
-    else
-      this.ReiniciarJuego();
+  Guardar(){
+    this.puntos = 0;
+    var alias = this.auth.getUsuarioLogueado().alias;
+    this.db.grabarJuego("ahorcado", alias, this.puntos);
+    this.ReiniciarJuego(false);
+    this.router.navigate(['home']);
   }
 
 }

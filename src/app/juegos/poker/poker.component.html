@@ -1,0 +1,47 @@
+<img id="fondo" src="../../../assets//fondo2.PNG" alt="">
+<br><div *ngIf="!empezoElJuego" style="margin-left: 30%;">
+    <h1 class="explicacion" style="bottom: 80%;">Se reparten dos cartas para el jugador, dos para el rival, 4 de las 5 en mesa y ustéd podra ver todas ellas!!</h1>
+    <h1 class="explicacion" style="bottom: 70%;">Finalmente, en la parte inferior izquierda hay 4 cartas que podrían ser la quinta y ultima carta en mesa. Ustéd deberá elegir cual de ellas te permitiría ganar el bote.</h1>
+    <h1 class="explicacion" style="bottom: 60%;">Mucha suerte!</h1><br>
+    <h4 class="explicacion" style="bottom: 50%;">Nota: Solo se podrá elegir una de estas ultimas, o ninguna en el caso de considerar imposible ganar la mano.</h4><br><br>    
+    <button (click)="ComenzarJuego()" id="btnComenzar">Comenzar Juego</button>
+</div>
+<div *ngIf="empezoElJuego" style="margin-left: 2%;">
+    <label id="cartasJug">MI MANO</label><label id="cartasJug" style="margin-left: 12%;">MANO DEL RIVAL</label><br>
+    <!-- HERO -->
+    <img [src]='simulacion.carta1H.img' id="imgCarta" style="left:2%;">
+    <img [src]='simulacion.carta2H.img' id="imgCarta" style="left:11%;">
+
+    <!-- VILLANO -->
+    <img [src]='simulacion.carta1V.img' id="imgCarta" style="left:26%;">
+    <img [src]='simulacion.carta2V.img' id="imgCarta" style="left:35%;"><br><br>
+
+    <!-- RANKING -->
+    <img src='../../../assets/rankingManos.PNG' id="ranking">
+
+
+    <h2 style="left:12%; bottom: 62%;">CARTAS EN MESA</h2>
+    <!-- COMUNITARIAS -->
+    <img [src]='simulacion.carta1C.img' id="imgCarta" style="left: 2%; bottom: 43%;">
+    <img [src]='simulacion.carta2C.img' id="imgCarta" style="left: 11%; bottom: 43%;">
+    <img [src]='simulacion.carta3C.img' id="imgCarta" style="left: 20%; bottom: 43%;">
+    <img [src]='simulacion.carta4C.img' id="imgCarta" style="left: 29%; bottom: 43%;">
+    <img [src]='simulacion.carta5C.img' id="imgCarta" style="left: 38%; bottom: 43%;" [ngClass]="{'selected': simulacion.carta5C.selected }"><br><br><br>
+    
+    <h2 style="left:8%; bottom: 38%;">SELECCIONA LA 5TA CARTA</h2>
+    <h2 style="left:8%; bottom: 34%;">QUE TE HARÍA GANAR</h2>
+    <h5 style="left:8%; bottom: 31%;">(SÓLO GANA 1 O NINGUNA)</h5>
+    <!-- POSIBILIDADES -->
+    <img [src]='simulacion.carta1B.img' id="imgCarta" (click)="SeleccionarCarta(1)" style="left: 2%; bottom: 11%;" [ngClass]="{'selected': simulacion.carta1B.selected, 'unSelected': !simulacion.carta1B.selected }">
+    <img [src]='simulacion.carta2B.img' id="imgCarta" (click)="SeleccionarCarta(2)" style="left: 11%; bottom: 11%;" [ngClass]="{'selected': simulacion.carta2B.selected, 'unSelected': !simulacion.carta2B.selected }">
+    <img [src]='simulacion.carta3B.img' id="imgCarta" (click)="SeleccionarCarta(3)" style="left: 20%; bottom: 11%;" [ngClass]="{'selected': simulacion.carta3B.selected, 'unSelected': !simulacion.carta3B.selected }">
+    <img [src]='simulacion.carta4B.img' id="imgCarta" (click)="SeleccionarCarta(4)" style="left: 29%; bottom: 11%;" [ngClass]="{'selected': simulacion.carta4B.selected, 'unSelected': !simulacion.carta4B.selected }"><br><br>
+
+    <button id="btnValidar" (click)="ValidarMano()" [disabled]="!puedeValidarMano">Validar Mano</button>
+    <h4 style="right: 5%; bottom: 20%;">{{mensaje}}</h4>
+    <h4 style="right: 5%; bottom: 15%;">Tus Puntos: {{puntos}}</h4>
+
+    <button *ngIf="terminoElJuego" id="btnReiniciar" (click)="Reiniciar(true)">Reiniciar</button>
+    <button *ngIf="terminoElJuego" id="btnGuardar" (click)="Guardar()">Guardar y Salir</button>
+
+</div>

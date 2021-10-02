@@ -27,7 +27,6 @@ export class MayorMenorComponent implements OnInit {
   ComenzarJuego(){
     this.mazo.CrearNuevoMazo();
     this.carta1 = this.mazo.SacarCartaAleatoria();
-    //this.carta2 = this.mazo.SacarCartaAleatoria();
   }
 
   Aplicar(boton:number){
@@ -112,16 +111,16 @@ export class MayorMenorComponent implements OnInit {
     }
   }
 
-  Guardar(salir:boolean){   
-    var alias = this.auth.getUsuarioLogueado().alias;
-    this.db.grabarJuego("mayormenor", alias, this.puntos);
+  Guardar(salir:boolean){
     this.reiniciar = false;
-    this.deshabilitar = false; 
-    this.puntos = 0;
     this.manos = 0;
-
-    if (salir)
+    this.deshabilitar = false;
+    if (salir){
+      var alias = this.auth.getUsuarioLogueado().alias;
+      this.db.grabarJuego("mayormenor", alias, this.puntos);
+      this.puntos = 0;
       this.router.navigate(['home']);
+    }    
     else
       this.ComenzarJuego();
   }

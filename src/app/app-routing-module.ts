@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistroComponent } from './registro/registro.component';
 import { MayorMenorComponent } from './juegos/mayor-menor/mayor-menor.component';
 import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
+import { PokerComponent } from './juegos/poker/poker.component'
 const routes: Routes = [  
     { path: 'login', component: LoginComponent },
     { path: 'error', component: ErrorComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: 'registro', component: RegistroComponent },
     { path: 'mayormenor', component: MayorMenorComponent },
     { path: 'ahorcado', component: AhorcadoComponent },
+    { path: 'poker', component: PokerComponent },
     { path: '**', redirectTo: 'error', pathMatch: 'full' }
 ];
 

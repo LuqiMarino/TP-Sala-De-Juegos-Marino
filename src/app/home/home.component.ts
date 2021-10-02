@@ -29,5 +29,13 @@ export class HomeComponent implements OnInit {
   AbrirAhorcado(){
     this.router.navigate(['ahorcado']);
   }
+  
+  AbrirPoker(){
+    this.router.navigate(['poker']);
+  }
+
+  AbrirPreguntados(){
+    this.router.navigate(['preguntados']);
+  }
 
 }

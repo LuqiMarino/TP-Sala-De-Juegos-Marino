@@ -1,36 +1,36 @@
-
+<img id="fondo" src="../../assets//fondo2.PNG" alt="">
 <div *ngIf="!empezoElJuego" style="margin-left: 30%;">
     <button (click)="ComenzarJuego()" style="width: 510px;">Comenzar Juego</button>
 </div>
 <div *ngIf="empezoElJuego">
-        <img src="../../../assets/ahorcado/ahorcado_7.png" alt="" [hidden]="cantidadErrores != 0" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_6.png" alt="" [hidden]="cantidadErrores != 1" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_5.png" alt="" [hidden]="cantidadErrores != 2" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_4.png" alt="" [hidden]="cantidadErrores != 3" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_3.png" alt="" [hidden]="cantidadErrores != 4" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_2.png" alt="" [hidden]="cantidadErrores != 5" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_1.png" alt="" [hidden]="cantidadErrores != 6" style="width: 20%; position: sticky;">
-        <img src="../../../assets/ahorcado/ahorcado_0.png" alt="" [hidden]="cantidadErrores != 7" style="width: 20%; position: sticky;">
+        <img src="../../../assets/ahorcado/ahorcado_7.png" alt="" [hidden]="cantidadErrores != 0" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_6.png" alt="" [hidden]="cantidadErrores != 1" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_5.png" alt="" [hidden]="cantidadErrores != 2" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_4.png" alt="" [hidden]="cantidadErrores != 3" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_3.png" alt="" [hidden]="cantidadErrores != 4" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_2.png" alt="" [hidden]="cantidadErrores != 5" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_1.png" alt="" [hidden]="cantidadErrores != 6" style="width: 20%; height: 40%; position: absolute;">
+        <img src="../../../assets/ahorcado/ahorcado_0.png" alt="" [hidden]="cantidadErrores != 7" style="width: 20%; height: 40%; position: absolute;">
     
         
-        <div style="margin-left: 16%; bottom: 68%;; position: absolute;"><ng-container *ngFor="let item of palabraEnJuego">
-            <label class="letraAdivinada" [hidden]="!item.adivinada">{{item.letra}}</label>
-            <label class="letraNoAdivinada" [hidden]="item.adivinada">A</label>
+        <div style="margin-left: 16%; bottom: 53%; position: absolute;"><ng-container *ngFor="let item of palabraEnJuego">
+            <label class="letraAdivinada" *ngIf="item.adivinada">{{item.letra}}</label>
+            <label class="letraNoAdivinada" *ngIf="!item.adivinada">__</label>
         </ng-container></div>
         
-    <div style="margin-left: 18%; position: absolute; bottom: 40%;"><ng-container *ngFor="let letra of letras1">
+    <div style="left: 10%; position: absolute; bottom: 40%;"><ng-container *ngFor="let letra of letras1">
         <button class="btnLetra" (click)="ValidarLetra(letra.letra)" [disabled]="letra.yaPresionada">{{letra.letra}}</button>
     </ng-container></div>
-    <div style="margin-left: 18%; position: absolute; bottom: 30%;"><ng-container *ngFor="let letra of letras2">
+    <div style="left: 10%; position: absolute; bottom: 30%;"><ng-container *ngFor="let letra of letras2">
         <button class="btnLetra" (click)="ValidarLetra(letra.letra)" [disabled]="letra.yaPresionada">{{letra.letra}}</button>
     </ng-container></div>
-    <div style="margin-left: 18%; position: absolute; bottom: 20%;"><ng-container *ngFor="let letra of letras3">
+    <div style="left: 10%; position: absolute; bottom: 20%;"><ng-container *ngFor="let letra of letras3">
         <button class="btnLetra" (click)="ValidarLetra(letra.letra)" [disabled]="letra.yaPresionada">{{letra.letra}}</button>
     </ng-container></div>
-    <h1 style="margin-left: 18%; bottom: 15%; position: absolute;">Puntos: {{puntos}}</h1>
+    <h1 style="left: 10%; bottom: 12%; position: absolute;">Tus Puntos: {{puntos}}</h1>
     
     <br>
-    <button *ngIf="reiniciar" style="margin-left: 18%; bottom: 10%; position: absolute; width: 510px;" (click)="Guardar(false)">Guardar y Reiniciar</button><br>
-    <button *ngIf="reiniciar" style="margin-left: 18%; bottom: 5%; position: absolute; width: 510px;" (click)="Guardar(true)">Guardar y Salir</button>
+    <button *ngIf="reiniciar" id="btnReiniciar" (click)="ReiniciarJuego(true)" style="background-color: rgb(9, 234, 250); bottom: 7%;">Reiniciar</button><br>
+    <button *ngIf="reiniciar" id="btnReiniciar" (click)="Guardar()" style="background-color: rgb(28, 230, 38); bottom: 2%;">Guardar y Salir</button>
 
 </div>

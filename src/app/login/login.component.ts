@@ -14,18 +14,16 @@ export class LoginComponent implements OnInit {
 
   public pw:string;
   public mail:string;
+  public mostrarError = false;
+  public error = "";
 
   constructor(private router: Router, private authService:AuthServiceService, private app:AppComponent, private db:DbService) { 
     this.pw = "";
     this.mail = "";
-  }
-
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.app.RefrescarUsuarioLogueado();  
-    }, 0);
     
   }
+
+  ngOnInit(): void {}
 
   Limpiar(){
     (<HTMLInputElement>document.getElementById("mail")).value = "";
@@ -40,7 +38,14 @@ export class LoginComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("mail")).style.border = "1px solid grey";
       (<HTMLInputElement>document.getElementById("pw")).style.border = "1px solid grey";
       var usuario = new Usuario(this.mail, this.pw);
-      this.authService.signIn(usuario);
+      this.authService.signIn(usuario).then(()=>{}).catch(()=>{
+        this.mostrarError = true;
+        this.error = "¡El usuario no esta registrado!";
+        setTimeout(() => {
+          this.mostrarError = false;
+          this.error = "";
+        }, 3500);
+      });
     }
     else{
       if (this.mail == ""){

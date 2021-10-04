@@ -159,11 +159,11 @@ export class AhorcadoComponent implements OnInit {
   
   
   Guardar(){
-    this.puntos = 0;
     var alias = this.auth.getUsuarioLogueado().alias;
     this.db.grabarJuego("ahorcado", alias, this.puntos);
+    this.puntos = 0;
     this.ReiniciarJuego(false);
-    this.router.navigate(['home']);
+    
   }
 
 }

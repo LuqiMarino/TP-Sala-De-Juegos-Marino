@@ -17,6 +17,8 @@ import { getFirestore } from 'firebase/firestore';
 import { MayorMenorComponent } from './juegos/mayor-menor/mayor-menor.component';
 import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 import { PokerComponent } from './juegos/poker/poker.component';
+import { PreguntadosComponent } from './juegos/preguntados/preguntados.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore();
@@ -31,13 +33,15 @@ const db = getFirestore();
     RegistroComponent,
     MayorMenorComponent,
     AhorcadoComponent,
-    PokerComponent
+    PokerComponent,
+    PreguntadosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

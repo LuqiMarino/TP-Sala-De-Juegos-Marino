@@ -1,0 +1,15 @@
+<img id="fondo" src="../../../assets//tv.PNG" alt="">
+<ng-container *ngFor="let item of juegoActual.personajes">
+    <img [src]='item.img' *ngIf='item.activa' id="imagen">
+</ng-container>
+<br><br><br>
+<button *ngIf='empezoElJuego' [ngClass]="{'bien': botonBien == 1, 'mal': botonMal == 1}" (click)='ValidarJuego(btn1)' style="left: 1%; bottom: 10%;" id="btn1">{{btn1}}</button><br>
+<button *ngIf='empezoElJuego' [ngClass]="{'bien': botonBien == 2, 'mal': botonMal == 2}" (click)='ValidarJuego(btn2)' style="right: 1%; bottom: 10%;" id="btn2">{{btn2}}</button><br>
+<button *ngIf='empezoElJuego' [ngClass]="{'bien': botonBien == 3, 'mal': botonMal == 3}" (click)='ValidarJuego(btn3)' style="left: 1%; bottom: 2%;" id="btn3">{{btn3}}</button><br>
+<button *ngIf='empezoElJuego' [ngClass]="{'bien': botonBien == 4, 'mal': botonMal == 4}" (click)='ValidarJuego(btn4)' style="right: 1%; bottom: 2%;" id="btn4">{{btn4}}</button>
+<button *ngIf='empezoElJuego' (click)='Guardar()' style="right: 1%; top: 14%;" id="btnGuardar">Guardar y Salir</button>
+
+<!-- [ngClass]="{'selected': simulacion.carta1B.selected, 'unSelected': !simulacion.carta1B.selected }" -->
+
+<br><br>
+<h1>PUNTOS: {{puntos}}</h1>

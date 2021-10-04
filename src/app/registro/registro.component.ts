@@ -13,8 +13,10 @@ import { AppComponent } from '../app.component';
 export class RegistroComponent implements OnInit {
 
   public alias:string;
-  public pw?:string;
-  public mail?:string;
+  public pw:string;
+  public mail:string;
+  public mostrarError = false;
+  public error = "";
 
   constructor(private router: Router, private authService:AuthServiceService, private app:AppComponent, private db:DbService) { 
     this.pw = "";
@@ -46,19 +48,26 @@ export class RegistroComponent implements OnInit {
     this.pw = (<HTMLInputElement>document.getElementById("pw")).value;
     this.alias = (<HTMLInputElement>document.getElementById("alias")).value;
     if (this.pw != "" && this.mail != "" && this.alias != "")
-    {
-      
+    {      
       (<HTMLInputElement>document.getElementById("mail")).style.border = "1px solid grey";
       (<HTMLInputElement>document.getElementById("pw")).style.border = "1px solid grey";
       (<HTMLInputElement>document.getElementById("alias")).style.border = "1px solid grey";
       var usuario = new Usuario(this.mail, this.pw, this.alias);
       this.db.validarUsuarioRegistrado(usuario)
-        .then(()=>{console.log("No fue posible agregar el usuario!")})
+        .then(()=>{          
+            this.mostrarError = true;
+            this.error = "¡El usuario ya se encuentra registrado!";
+            setTimeout(() => {
+              this.mostrarError = false;
+              this.error = "";
+            }, 3500);
+          
+        })
         .catch(()=>{
           this.db.agregarUsuario(usuario).then(()=>{
           this.authService.signIn(usuario);
         });
-      }).catch(()=>{console.log("El usuario ya esta registrado!")});
+      });
       
       
     }
@@ -78,7 +87,7 @@ export class RegistroComponent implements OnInit {
   }
 
   IrALogin(){
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
 }

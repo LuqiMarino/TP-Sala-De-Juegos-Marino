@@ -15,7 +15,7 @@ export class AppComponent {
 
   IrALogin(){
     this.auth.signOut();
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 
   IrAHome(){
@@ -27,7 +27,7 @@ export class AppComponent {
   }
 
   RefrescarUsuarioLogueado(){
-    this.usuarioAlias = "this.auth.getUsuarioLogueado().alias";
+    this.usuarioAlias = this.auth.getUsuarioLogueado().alias;
     this.hayUsuarioLogueado = this.usuarioAlias != "";
   }
 }

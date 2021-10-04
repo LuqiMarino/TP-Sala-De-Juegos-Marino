@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Carta, Mazo } from 'src/app/clases/Mazo';
 import { SimulacionPoker } from 'src/app/clases/SimulacionPoker';
+import { AuthServiceService } from 'src/app/servicios/auth-service.service';
+import { DbService } from 'src/app/servicios/db.service';
 
 @Component({
   selector: 'app-poker',
@@ -18,7 +20,7 @@ export class PokerComponent implements OnInit {
   simulacionesNoJugadas:Array<number>;
 
   public simulacion!:SimulacionPoker;
-  constructor(private router:Router) { 
+  constructor(private router:Router, private auth:AuthServiceService, private db: DbService) { 
     this.simulacionesNoJugadas = [1,2,3,4,5,6,7,8,9,10,11];
     
   } 
@@ -147,6 +149,9 @@ export class PokerComponent implements OnInit {
 
   Guardar(){
     this.Reiniciar(false);
+    var alias = this.auth.getUsuarioLogueado().alias;
+    this.db.grabarJuego("poker", alias, this.puntos);
+    this.puntos = 0;
     this.router.navigate(['home']);
   }
 

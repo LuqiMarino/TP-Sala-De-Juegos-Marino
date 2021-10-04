@@ -6,6 +6,29 @@
     opacity: 1;
 }
 
+#error{
+    position: absolute;
+    width: 98%;
+    height: 70px;
+    left: 1%;
+    bottom: 7%;
+    z-index: 10;
+    cursor: none;
+    background-color: rgb(238, 39, 39);
+    border: 3px solid black;
+    font-size: 28px;
+    font-weight: bold;
+    animation: aparecer;
+    animation-duration: 3.5s;
+}
+
+@keyframes aparecer {
+    0% { bottom: 0%; }
+    40% { bottom: 6%; }
+    80% { opacity: 1;}
+    100% { bottom: 6%; opacity: 0; }
+  }
+
 #principal{
     position: fixed;
     z-index: 5;

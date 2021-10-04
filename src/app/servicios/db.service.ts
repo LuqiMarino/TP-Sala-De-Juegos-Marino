@@ -109,18 +109,23 @@ export class DbService {
       setTimeout(() => {
 
         this.obtenerDatos("usuarios").then((r:any) => {
+        var encontro = false;
         if (r != null){
           for (var i=0;i<r.length;i++){
-            if (r[i]["mail"] == usuario.mail && r[i]["password"] == usuario.password){
+            if (r[i]["mail"] == usuario.mail){
               var json = {mail:r[i]["mail"], password:r[i]["password"], alias:r[i]["alias"]};
               resolve(json);
+              encontro = true;
               break;
             }
           }
         }
-        }).catch(()=>{reject()}); 
+        if (!encontro)
+          reject("NOOOOO");
         
-      }, 1000);
+        }); 
+        
+      }, 100);
     });
     
   }

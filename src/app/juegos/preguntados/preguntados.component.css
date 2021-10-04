@@ -1,0 +1,64 @@
+#fondo{
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    position: fixed;
+    opacity: 1;
+}
+
+#imagen{
+    position: absolute;
+    left: 40%;
+    bottom: 20%;
+    max-width:100%;
+    height:auto;
+}
+
+img{
+    width: 350px;
+}
+
+button{
+    width: 48.8%;
+    height: 70px;
+    border-radius: 15px;
+    border: solid 2px black;
+    background-color: rgb(251, 255, 24);
+    font-weight: bold;
+    font-size: 44px;
+    position: absolute;
+    z-index: 3;
+}
+
+#btnGuardar{
+    width: 17%;
+    height: 40px;
+    border-radius: 15px;
+    border: solid 2px rgb(251, 255, 24);
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    z-index: 3;
+}
+
+.bien{
+    background-color: rgb(28, 230, 38);
+}
+
+.mal{
+    background-color: rgb(252, 12, 4);
+}
+
+h1{
+    position: absolute;
+    right: 3%;
+    top: 6%;
+    font-family: serif;
+    font-style: oblique;
+    font-weight: bold;
+    color: black;
+    font-size: 60px;
+    text-shadow: -1px 0 rgb(251, 255, 24), 0 1px rgb(251, 255, 24), 1px 0 rgb(251, 255, 24), 0 -1px rgb(251, 255, 24);
+}

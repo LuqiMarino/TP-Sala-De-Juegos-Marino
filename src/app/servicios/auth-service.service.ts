@@ -15,21 +15,26 @@ export class AuthServiceService {
 
 
   public async signIn(usuario: Usuario){
-    this.db.validarUsuarioRegistrado(usuario).then((data) => {
-      var str = JSON.stringify(data);
-      var json = JSON.parse(str);
-      var user = new Usuario(json["mail"], json["password"], json["alias"]);
-      var estaRegistrado = user.mail.length > 0 && user.password.length > 0 && user.alias.length > 0
-      if (estaRegistrado){
-        this.db.usuarioLogueado = user;
-        this.db.grabarLogUsuario(user);
-        this.router.navigate(['home']);
-      }
+
+    return new Promise((resolve,reject)=>{
+      this.db.validarUsuarioRegistrado(usuario).then((data) => {
+        var str = JSON.stringify(data);
+        var json = JSON.parse(str);
+        var user = new Usuario(json["mail"], json["password"], json["alias"]);
+        var estaRegistrado = user.mail.length > 0 && user.password.length > 0 && user.alias.length > 0
+        if (estaRegistrado){
+          this.db.usuarioLogueado = user;
+          this.db.grabarLogUsuario(user);
+          resolve(true);
+          this.router.navigate(['home']);          
+        }
+      }).catch((err) =>{
+        reject(err);
+      });
       
-        
-      // else
-      //   MOSTRAR ERROR QUE NO PUDO PUDO INGRESAR
+
     });
+    
     
   }
 

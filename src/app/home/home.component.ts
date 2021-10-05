@@ -10,16 +10,13 @@ import { AuthServiceService } from './../servicios/auth-service.service'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   usuarioLogueado:Usuario = new Usuario("", "");
   constructor(private app:AppComponent, private auth:AuthServiceService, private router: Router) {
     this.usuarioLogueado = this.auth.getUsuarioLogueado();
    }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.app.RefrescarUsuarioLogueado();
-    }, 0);
+    this.app.RefrescarUsuarioLogueado();
   }
 
   AbrirMayorMenor(){
@@ -36,6 +33,10 @@ export class HomeComponent implements OnInit {
 
   AbrirPreguntados(){
     this.router.navigate(['preguntados']);
+  }
+
+  IrARanking(){
+    this.router.navigate(['ranking']);
   }
 
 }

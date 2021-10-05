@@ -12,12 +12,9 @@ export class Simpsons{
 export class JuegoSimpsons{
     public personajes:Array<Simpsons>;
 
-    constructor(personajes:Array<Simpsons>, traducir:boolean){
+    constructor(personajes:Array<Simpsons>){
         this.personajes = personajes;
-        console.log("const");
         this.ReiniciarTodo();
-        if (traducir)
-            this.Traducir();
     }
 
     ReiniciarTodo(){
@@ -27,62 +24,61 @@ export class JuegoSimpsons{
         });
     }
 
-    Traducir(){
-        for(var i=0;i<this.personajes.length;i++){
-            switch(this.personajes[i].nombre){                
-                case "Abe Simpson":
-                    this.personajes[i].nombre = "Abraham Simpson";
-                    break;
-                case "Rainier Wolfcastle":
-                    this.personajes[i].nombre = "Mc Bain";
-                    break;
-                case "Homer Simpson":
-                    this.personajes[i].nombre = "Homero Simpson";
-                    break;
-                case "Mr. Burns":
-                    this.personajes[i].nombre = "Montgomery Burns";
-                    break;
-                case "Otto":
-                    this.personajes[i].nombre = "Otto";
-                    break;
-                case "Ralph Wiggum":
-                    this.personajes[i].nombre = "Rafa Gorgory";
-                    break;
-                case "Dr. Nick":
-                    this.personajes[i].nombre = "Doctor Nick";
-                    break;
-                case "Bart Simpson":
-                    this.personajes[i].nombre = "Bart Simpson";
-                    break;
-                case "Chief Wiggum":
-                    this.personajes[i].nombre = "Clancy Gorgory";
-                    break;
-                case "Comic Book Guy":
-                    this.personajes[i].nombre = "Hombre de las Historietas";
-                    break;
-                case "Mayor Quimby":
-                    this.personajes[i].nombre = "Alcalde Diamante";
-                    break;
-                case "Principal Skinner":
-                    this.personajes[i].nombre = "Simur Skinner";
-                    break;
-                case "Waylon Smithers":
-                    this.personajes[i].nombre = "Smithers";
-                    break;
-                case "Milhouse Van Houten":
-                    this.personajes[i].nombre = "Milhouse Van Houten";
-                    break;
-                case "Nelson Muntz":
-                    this.personajes[i].nombre = "Nelson Rufino";
-                    break;
-                case "Groundskeeper Willie":
-                    this.personajes[i].nombre = "Willie";
-                    break;
-                case "Duffman":
-                    this.personajes[i].nombre = "Hombre Duff";
-                    break;
-            }   
-        }
+    Traducir(nombre:string):string{
+        switch(nombre){                
+            case "Abe Simpson":
+                return "Abraham Simpson";
+                
+            case "Rainier Wolfcastle":
+                return "Mc Bain";
+                
+            case "Homer Simpson":
+                return "Homero Simpson";
+                
+            case "Mr. Burns":
+                return "Montgomery Burns";
+                
+            case "Otto":
+                return "Otto";
+                
+            case "Ralph Wiggum":
+                return "Rafa Gorgory";
+                
+            case "Dr. Nick":
+                return "Doctor Nick";
+                
+            case "Bart Simpson":
+                return "Bart Simpson";
+                
+            case "Chief Wiggum":
+                return "Clancy Gorgory";
+                
+            case "Comic Book Guy":
+                return "Hombre de las Historietas";
+                
+            case "Mayor Quimby":
+                return "Alcalde Diamante";
+                
+            case "Principal Skinner":
+                return "Simur Skinner";
+                
+            case "Waylon Smithers":
+                return "Smithers";
+                
+            case "Milhouse Van Houten":
+                return "Milhouse Van Houten";
+                
+            case "Nelson Muntz":
+                return "Nelson Rufino";
+                
+            case "Groundskeeper Willie":
+                return "Willie";
+                
+            case "Duffman":
+                return "Hombre Duff";
+            default: return nombre;
+                
+        }  
     }
 
     

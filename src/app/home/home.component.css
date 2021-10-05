@@ -58,6 +58,7 @@
     margin-right: 2%;
 }
 
+
 h1{
     font-size: 84px;
     font-family: serif;
@@ -67,3 +68,19 @@ h1{
     z-index: 3;
     position: sticky;
 }
+
+#ranking{
+    background-color: rgb(245, 65, 236);
+    width: 90%;
+    height: 80px;
+    margin-left: 4%;
+    position: absolute;
+    border-radius: 15px;
+    border: solid 2px black;
+    font-weight: bold;
+    font-size: 40px;
+    z-index: 3;
+    cursor: pointer;
+}
+
+

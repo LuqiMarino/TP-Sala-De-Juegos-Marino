@@ -19,6 +19,7 @@ import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 import { PokerComponent } from './juegos/poker/poker.component';
 import { PreguntadosComponent } from './juegos/preguntados/preguntados.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RankingComponent } from './ranking/ranking.component';
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore();
@@ -34,7 +35,8 @@ const db = getFirestore();
     MayorMenorComponent,
     AhorcadoComponent,
     PokerComponent,
-    PreguntadosComponent
+    PreguntadosComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,

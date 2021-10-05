@@ -88,16 +88,15 @@ export class DbService {
   }
 
   public async obtenerDatos(documento:string){
-    this.usuariosList = [];
+    var newList = new Array<any>();
     const querySnapshot = await getDocs(collection(this.db, documento));    
     querySnapshot.forEach( (doc) => {      
-      this.usuariosList.push(doc.data());
-      //console.log(`${doc.id} => ${doc.data()["mail"]}`);
+      newList.push(doc.data());
     });
     return new Promise((resolve, reject)=>{
       setTimeout(() => {
-        if (this.usuariosList.length > 0)
-          resolve(this.usuariosList);
+        if (newList.length > 0)
+          resolve(newList);
         else
           reject();
       }, 1000);

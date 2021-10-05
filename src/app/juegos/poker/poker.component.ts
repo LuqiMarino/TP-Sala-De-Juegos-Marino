@@ -18,6 +18,7 @@ export class PokerComponent implements OnInit {
   puntos = 0;
   mensaje = "";
   simulacionesNoJugadas:Array<number>;
+  mostrarSpinner = false;
 
   public simulacion!:SimulacionPoker;
   constructor(private router:Router, private auth:AuthServiceService, private db: DbService) { 
@@ -97,35 +98,39 @@ export class PokerComponent implements OnInit {
   }
 
   ValidarMano(){
-    this.puedeValidarMano = false;
-    if (this.simulacion.carta1B.selected){
-      if (this.simulacion.carta1B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta1B.palo == this.simulacion.cartaGanadora.palo){
-        this.esGanador = true;
-      }        
-    }
-    else if (this.simulacion.carta2B.selected){
-      if (this.simulacion.carta2B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta2B.palo == this.simulacion.cartaGanadora.palo){
-        this.esGanador = true;
-      }        
-    }
-    else if (this.simulacion.carta3B.selected){
-      if (this.simulacion.carta3B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta3B.palo == this.simulacion.cartaGanadora.palo){
-        this.esGanador = true;
-      }        
-    }
-    else if (this.simulacion.carta4B.selected){
-      if (this.simulacion.carta4B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta4B.palo == this.simulacion.cartaGanadora.palo){
-        this.esGanador = true;
-      }        
-    }
-    else{ //no selecciono nada
-      if (this.simulacion.cartaGanadora.numero == "X" && this.simulacion.cartaGanadora.palo == "X"){
-        this.esGanador = true;        
+    this.MostrarSpinner();
+    setTimeout(() => {
+      this.puedeValidarMano = false;
+      if (this.simulacion.carta1B.selected){
+        if (this.simulacion.carta1B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta1B.palo == this.simulacion.cartaGanadora.palo){
+          this.esGanador = true;
+        }        
       }
-    }
+      else if (this.simulacion.carta2B.selected){
+        if (this.simulacion.carta2B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta2B.palo == this.simulacion.cartaGanadora.palo){
+          this.esGanador = true;
+        }        
+      }
+      else if (this.simulacion.carta3B.selected){
+        if (this.simulacion.carta3B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta3B.palo == this.simulacion.cartaGanadora.palo){
+          this.esGanador = true;
+        }        
+      }
+      else if (this.simulacion.carta4B.selected){
+        if (this.simulacion.carta4B.numero == this.simulacion.cartaGanadora.numero && this.simulacion.carta4B.palo == this.simulacion.cartaGanadora.palo){
+          this.esGanador = true;
+        }        
+      }
+      else{ //no selecciono nada
+        if (this.simulacion.cartaGanadora.numero == "X" && this.simulacion.cartaGanadora.palo == "X"){
+          this.esGanador = true;        
+        }
+      }
+      
+      this.terminoElJuego = true;
+      this.MostrarMensaje();
+    }, 1000);
     
-    this.terminoElJuego = true;
-    this.MostrarMensaje()
   }
 
   MostrarMensaje(){
@@ -148,11 +153,24 @@ export class PokerComponent implements OnInit {
   }
 
   Guardar(){
-    this.Reiniciar(false);
-    var alias = this.auth.getUsuarioLogueado().alias;
-    this.db.grabarJuego("poker", alias, this.puntos);
-    this.puntos = 0;
-    this.router.navigate(['home']);
+    this.MostrarSpinner();
+    setTimeout(() => {
+      this.Reiniciar(false);
+      var alias = this.auth.getUsuarioLogueado().alias;
+      this.db.grabarJuego("poker", alias, this.puntos);
+      this.puntos = 0;
+      this.router.navigate(['home']);
+    }, 1000);
+    
+  }
+
+  MostrarSpinner(){
+    this.mostrarSpinner = true;
+    (<HTMLInputElement>document.getElementById("principal")).style.opacity = "0.5";
+    setTimeout(() => {
+      this.mostrarSpinner = false;
+      (<HTMLInputElement>document.getElementById("principal")).style.opacity = "1";
+    }, 1000);
   }
 
 }

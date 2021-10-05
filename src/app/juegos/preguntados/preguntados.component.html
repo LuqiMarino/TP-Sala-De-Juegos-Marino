@@ -1,4 +1,6 @@
+<div id="spinner" [hidden]="!mostrarSpinner"></div>
 <img id="fondo" src="../../../assets//tv.PNG" alt="">
+<div id="principal">
 <ng-container *ngFor="let item of juegoActual.personajes">
     <img [src]='item.img' *ngIf='item.activa' id="imagen">
 </ng-container>
@@ -13,3 +15,4 @@
 
 <br><br>
 <h1>PUNTOS: {{puntos}}</h1>
+</div>

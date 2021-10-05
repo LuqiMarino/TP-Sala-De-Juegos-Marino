@@ -8,8 +8,28 @@
     height: 300px;
     margin-left: 30%;
     border: none;
+    z-index: 5;
 }
 
-#VntPrincipal{
-    background-color: lightgrey;
+#fondo{
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+    position: fixed;
+    opacity: 0.4;
+}
+
+#principal{
+    z-index: 5;
+    opacity: 1;
+    position: absolute;
+    margin-left: 15%;
+}
+
+h1{
+    font-size: 56px;
+}
+
+h5{
+    font-size: 24px;
 }

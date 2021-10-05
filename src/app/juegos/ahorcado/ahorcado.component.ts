@@ -16,25 +16,40 @@ export class AhorcadoComponent implements OnInit {
   empezoElJuego=false; reiniciar = false;
   cantidadErrores = 0; puntos = 0; totalDePuntos = 0;
   letraVacia = "A";
+  mostrarSpinner = false;
   
   constructor(private router:Router, private auth:AuthServiceService, private db:DbService){}
 
-  ngOnInit(){
-    this.ComenzarJuego();
+  ngOnInit(){    
+    this.RellenarPalabras();
+    this.MostrarSpinner();
+  }
+
+  MostrarSpinner(){
+    this.mostrarSpinner = true;
+    (<HTMLInputElement>document.getElementById("principal")).style.opacity = "0.5";
+    setTimeout(() => {
+      this.mostrarSpinner = false;
+      (<HTMLInputElement>document.getElementById("principal")).style.opacity = "1";
+      this.ComenzarJuego();
+    }, 1000);
   }
 
   RellenarPalabras(){
-    this.palabras = ['gato', 'perro', 'ventilador', 'diccionario', 'teclado', 'monitor', 'frasco', 'tijera', 'alicate', 'mesa', 'sillon', 'gabinete', 'ave', 'baranda', 'papel', 'cartuchera',
-    'pantalon', 'camisa', 'gaseosa', 'auto', 'colectivo', 'peluca', 'oreja', 'tobillo', 'zapato', 'juego', 'baraja', 'ficha', 'bolsa', 'paraguas', 'heladera', 'congelado',
-    'manzana', 'banana', 'polvo', 'martillo', 'ropa', 'montaña', 'atardecer', 'asado', 'vacio', 'manija', 'anteojos', 'cordon', 'vereda', 'avenida'];
+    this.palabras = ['gato', 'perro', 'teclado', 'monitor', 'frasco', 'tijera', 'alicate', 'mesa', 'sillon', 'ave', 'baranda', 'papel',
+    'pantalon', 'camisa', 'gaseosa', 'auto', 'peluca', 'oreja', 'tobillo', 'zapato', 'juego', 'baraja', 'ficha', 'bolsa', 'heladera', 'congelado',
+    'manzana', 'banana', 'polvo', 'martillo', 'ropa', 'montaña', 'asado', 'vacio', 'manija', 'cordon', 'vereda', 'avenida', 'anillo',
+    'agua', 'dormir', 'familia', 'primo', 'fuego', 'lluvia', 'casco', 'dedo', 'espada', 'pistola', 'barco',
+    'avion', 'pez', 'sopa', 'hospital', 'peso', 'ovni', 'oveja', 'zorro'];
   }
 
   ComenzarJuego(){
     this.cantidadErrores = 0;
-    this.RellenarPalabras();
     var randomNum = Math.floor(Math.random() * (this.palabras.length - 0)) + 0;
+    console.log(randomNum);
+    console.log(this.palabras);
     var palabraAux = this.palabras[randomNum];
-    this.SetPalabraEnJuego("pedo");
+    this.SetPalabraEnJuego(palabraAux);
     this.SetLetrasEnJuego();
 
     var index = this.palabras.findIndex(a => a == palabraAux);
@@ -71,7 +86,7 @@ export class AhorcadoComponent implements OnInit {
     if (!this.reiniciar){
       this.DeshabilitarLetra(letra); 
       var indexPalabra = this.palabraEnJuego.findIndex(a => a.letra.toUpperCase() == letra && a.adivinada == false);
-      
+      console.log("index " + indexPalabra);
       if (indexPalabra == -1){
         this.cantidadErrores++;
         this.ValidarCantidadErrores();
@@ -93,13 +108,14 @@ export class AhorcadoComponent implements OnInit {
     this.reiniciar = false;
     this.cantidadErrores = 0;
     this.totalDePuntos = 0;
-    this.palabras = []; this.letras1 = []; this.letras2 = []; this.letras3 = []; this.palabraEnJuego = [];
+    this.letras1 = []; this.letras2 = []; this.letras3 = []; this.palabraEnJuego = [];
     this.empezoElJuego = true;
     if (reiniciar)
       this.ComenzarJuego();
   }
 
   ValidarGano():boolean{
+    console.log("gano ?");
     for (var i=0;i<this.palabraEnJuego.length;i++){      
         if (this.palabraEnJuego[i].adivinada == false)
           return false;
@@ -150,7 +166,7 @@ export class AhorcadoComponent implements OnInit {
     //   this.img2 = true;
     // else if (this.cantidadErrores == 6)
     //   this.img1 = true;
-    if (this.cantidadErrores == 7){
+    if (this.cantidadErrores == 6){
       this.puntos = this.puntos - this.totalDePuntos;
       this.reiniciar = true;
     }
@@ -159,10 +175,15 @@ export class AhorcadoComponent implements OnInit {
   
   
   Guardar(){
-    var alias = this.auth.getUsuarioLogueado().alias;
-    this.db.grabarJuego("ahorcado", alias, this.puntos);
-    this.puntos = 0;
-    this.ReiniciarJuego(false);
+    this.MostrarSpinner();
+    setTimeout(() => {
+      var alias = this.auth.getUsuarioLogueado().alias;
+      this.db.grabarJuego("ahorcado", alias, this.puntos);
+      this.puntos = 0;
+      this.ReiniciarJuego(false);
+      this.router.navigate(['home']);
+    }, 1000);
+    
     
   }
 

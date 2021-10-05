@@ -12,7 +12,7 @@ import { DbService } from 'src/app/servicios/db.service';
 })
 export class PreguntadosComponent implements OnInit {
   public personajes:Array<Simpsons> = [];
-  public juegoActual:JuegoSimpsons = new JuegoSimpsons(this.personajes, true);
+  public juegoActual:JuegoSimpsons = new JuegoSimpsons(this.personajes);
   public empezoElJuego = false;
   public btn1 = "";
   public btn2 = "";
@@ -22,13 +22,11 @@ export class PreguntadosComponent implements OnInit {
   public deshabilitar = false;
   public botonBien = 0;
   public botonMal = 0;
+  mostrarSpinner = false;
   constructor(private api:ApiService, private router:Router, private auth:AuthServiceService, private db:DbService) { }
 
   ngOnInit(): void {
-    this.SetPersonajesFromApi();
-    this.SetPersonajesFromApi();
-    this.SetPersonajesFromApi();
-    this.SetPersonajesFromApi();
+    this.MostrarSpinner();
     this.SetPersonajesFromApi();
     this.SetPersonajesFromApi();
     this.SetPersonajesFromApi();
@@ -51,12 +49,12 @@ export class PreguntadosComponent implements OnInit {
     this.api.getalgo().subscribe((data:any) => {        
       var pjs:Array<any> = data;
       pjs.forEach(item => {
-        var index = this.personajes.findIndex(a => a.nombre == item["character"])
-        if (index == -1)
-          this.personajes.push(new Simpsons(item["character"], item["image"]));
+        var nombreTraducido = this.juegoActual.Traducir(item["character"]);
+        var index = this.personajes.findIndex(a => a.nombre == nombreTraducido)
+        if (index == -1)          
+          this.personajes.push(new Simpsons(nombreTraducido, item["image"]));   
           
-      });
-      this.juegoActual.Traducir()
+      });      
     });     
   }
 
@@ -66,7 +64,7 @@ export class PreguntadosComponent implements OnInit {
     this.btn2 = "";
     this.btn3 = "";
     this.btn4 = "";
-    this.juegoActual = new JuegoSimpsons(this.personajes, false);
+    this.juegoActual = new JuegoSimpsons(this.personajes);
 
     if (this.juegoActual.personajes.length >= 4){
       this.ActivarPersonaje();
@@ -75,7 +73,7 @@ export class PreguntadosComponent implements OnInit {
     }
     else
     {
-      this.deshabilitar = true;
+      this.ngOnInit();
     }
     
   }
@@ -226,10 +224,24 @@ export class PreguntadosComponent implements OnInit {
   }
   
   Guardar(){
-    var alias = this.auth.getUsuarioLogueado().alias;
-    this.db.grabarJuego("preguntados", alias, this.puntos);
-    this.puntos = 0;
-    this.router.navigate(['home']);
+    this.MostrarSpinner();
+    setTimeout(() => {
+      var alias = this.auth.getUsuarioLogueado().alias;
+      this.db.grabarJuego("preguntados", alias, this.puntos);
+      this.puntos = 0;
+      this.router.navigate(['home']);
+    }, 4000);
+  }
+
+  MostrarSpinner(){
+    this.mostrarSpinner = true;
+    (<HTMLInputElement>document.getElementById("principal")).style.opacity = "0.5";
+    (<HTMLInputElement>document.getElementById("fondo")).style.opacity = "0.5";
+    setTimeout(() => {
+      this.mostrarSpinner = false;
+      (<HTMLInputElement>document.getElementById("principal")).style.opacity = "1";
+      (<HTMLInputElement>document.getElementById("fondo")).style.opacity = "1";
+    }, 4000);
   }
 }
 

@@ -1,4 +1,5 @@
-<div style="margin-left: 30%; margin-top: 2%;">
+<div id="spinner" [hidden]="!mostrarSpinner"></div>
+<div style="margin-left: 30%; margin-top: 2%;" id="principal">
     
     <button (click)="ComenzarJuego()" style="width: 510px;" [disabled]="mazo.empezoElJuego">Comenzar Juego</button>
     

@@ -10,15 +10,17 @@ import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 import { PokerComponent } from './juegos/poker/poker.component'
 import { GuardGuard } from './servicios/guard.guard'
 import { PreguntadosComponent } from './juegos/preguntados/preguntados.component';
+import { RankingComponent } from './ranking/ranking.component';
 const routes: Routes = [  
-    { path: 'quiensoy', component: QuiensoyComponent, canActivate: [GuardGuard] },
-    { path: 'home', component: HomeComponent, canActivate: [GuardGuard] },
+    { path: 'quiensoy', component: QuiensoyComponent,},
+    { path: 'home', component: HomeComponent },
     { path: '', component: LoginComponent },
     { path: 'registro', component: RegistroComponent },
-    { path: 'mayormenor', component: MayorMenorComponent, canActivate: [GuardGuard] },
-    { path: 'ahorcado', component: AhorcadoComponent, canActivate: [GuardGuard] },
-    { path: 'poker', component: PokerComponent, canActivate: [GuardGuard] },
-    { path: 'preguntados', component: PreguntadosComponent, canActivate: [GuardGuard] },
+    { path: 'mayormenor', component: MayorMenorComponent, canActivate: [GuardGuard]  },
+    { path: 'ahorcado', component: AhorcadoComponent },
+    { path: 'poker', component: PokerComponent },
+    { path: 'preguntados', component: PreguntadosComponent },
+    { path: 'ranking', component: RankingComponent },
     { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

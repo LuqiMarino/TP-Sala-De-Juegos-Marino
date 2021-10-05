@@ -1,8 +1,6 @@
+<div id="spinner" [hidden]="!mostrarSpinner"></div>
 <img id="fondo" src="../../assets//fondo2.PNG" alt="">
-<div *ngIf="!empezoElJuego" style="margin-left: 30%;">
-    <button (click)="ComenzarJuego()" style="width: 510px;">Comenzar Juego</button>
-</div>
-<div *ngIf="empezoElJuego">
+<div id="principal">
         <img src="../../../assets/ahorcado/ahorcado_7.png" alt="" [hidden]="cantidadErrores != 0" style="width: 20%; height: 40%; position: absolute;">
         <img src="../../../assets/ahorcado/ahorcado_6.png" alt="" [hidden]="cantidadErrores != 1" style="width: 20%; height: 40%; position: absolute;">
         <img src="../../../assets/ahorcado/ahorcado_5.png" alt="" [hidden]="cantidadErrores != 2" style="width: 20%; height: 40%; position: absolute;">
@@ -10,7 +8,6 @@
         <img src="../../../assets/ahorcado/ahorcado_3.png" alt="" [hidden]="cantidadErrores != 4" style="width: 20%; height: 40%; position: absolute;">
         <img src="../../../assets/ahorcado/ahorcado_2.png" alt="" [hidden]="cantidadErrores != 5" style="width: 20%; height: 40%; position: absolute;">
         <img src="../../../assets/ahorcado/ahorcado_1.png" alt="" [hidden]="cantidadErrores != 6" style="width: 20%; height: 40%; position: absolute;">
-        <img src="../../../assets/ahorcado/ahorcado_0.png" alt="" [hidden]="cantidadErrores != 7" style="width: 20%; height: 40%; position: absolute;">
     
         
         <div style="margin-left: 16%; bottom: 53%; position: absolute;"><ng-container *ngFor="let item of palabraEnJuego">

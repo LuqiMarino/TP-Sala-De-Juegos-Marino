@@ -1,0 +1,37 @@
+<div id="spinner" [hidden]="!mostrarSpinner"></div>
+<img id="fondo" src="../../assets//fondo1.PNG" alt="">
+<div id="principal">
+<div style="margin-left: 15%;"><div *ngIf="cargoTodo" id="grilla">
+    <label class="header"  style="background-color: rgb(245, 65, 236);">POKER</label><br>
+    <label class="header2">Jugador</label><label class="header2 header2Der">Puntaje</label><br>
+    <ng-container *ngFor="let item of listadoPoker">
+        <label class="alias">{{item.alias}}</label>
+        <label class="puntaje">{{item.puntaje}}</label><br>
+    </ng-container>    
+</div><br><br>
+<div *ngIf="cargoTodo" id="grilla">
+    <label class="header" style="background-color: rgb(245, 242, 60)">SIMSONIZADOS</label><br>
+    <label class="header2">Jugador</label><label class="header2 header2Der">Puntaje</label><br>
+    <ng-container *ngFor="let item of listadoPreguntados">
+        <label class="alias">{{item.alias}}</label>
+        <label class="puntaje">{{item.puntaje}}</label><br>
+    </ng-container>    
+</div><br><br>
+<div *ngIf="cargoTodo" id="grilla">
+    <label class="header" style="background-color: rgb(35, 216, 240);">AHORCADO</label><br>
+    <label class="header2">Jugador</label><label class="header2 header2Der">Puntaje</label><br>
+    <ng-container *ngFor="let item of listadoAhorcado">
+        <label class="alias">{{item.alias}}</label>
+        <label class="puntaje">{{item.puntaje}}</label><br>
+    </ng-container>
+</div><br><br>
+<div *ngIf="cargoTodo" id="grilla">
+    <label class="header" style="background-color: rgb(28, 230, 38)">MAYOR O MENOR</label><br>
+    <label class="header2">Jugador</label><label class="header2 header2Der">Puntaje</label><br>
+    <ng-container *ngFor="let item of listadoMayorMenor">
+        <label class="alias">{{item.alias}}</label>
+        <label class="puntaje">{{item.puntaje}}</label><br>
+    </ng-container>    
+</div>
+</div>
+</div>

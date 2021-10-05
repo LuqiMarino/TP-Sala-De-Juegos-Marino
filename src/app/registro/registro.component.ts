@@ -17,6 +17,7 @@ export class RegistroComponent implements OnInit {
   public mail:string;
   public mostrarError = false;
   public error = "";
+  public mostrarSpinner = false;
 
   constructor(private router: Router, private authService:AuthServiceService, private app:AppComponent, private db:DbService) { 
     this.pw = "";
@@ -37,6 +38,16 @@ export class RegistroComponent implements OnInit {
     }, 0);
   }
 
+  
+  MostrarSpinner(){
+    this.mostrarSpinner = true;
+    (<HTMLInputElement>document.getElementById("principal")).style.opacity = "0.5";
+    setTimeout(() => {
+      this.mostrarSpinner = false;
+      (<HTMLInputElement>document.getElementById("principal")).style.opacity = "1";
+    }, 1000);
+  }
+
   Limpiar(){
     (<HTMLInputElement>document.getElementById("mail")).value = "";
     (<HTMLInputElement>document.getElementById("pw")).value = "";
@@ -53,21 +64,25 @@ export class RegistroComponent implements OnInit {
       (<HTMLInputElement>document.getElementById("pw")).style.border = "1px solid grey";
       (<HTMLInputElement>document.getElementById("alias")).style.border = "1px solid grey";
       var usuario = new Usuario(this.mail, this.pw, this.alias);
-      this.db.validarUsuarioRegistrado(usuario)
-        .then(()=>{          
-            this.mostrarError = true;
-            this.error = "¡El usuario ya se encuentra registrado!";
-            setTimeout(() => {
-              this.mostrarError = false;
-              this.error = "";
-            }, 3500);
-          
-        })
-        .catch(()=>{
-          this.db.agregarUsuario(usuario).then(()=>{
-          this.authService.signIn(usuario);
+      this.MostrarSpinner();
+      setTimeout(() => {
+        this.db.validarUsuarioRegistrado(usuario)
+          .then(()=>{          
+              this.mostrarError = true;
+              this.error = "¡El usuario ya se encuentra registrado!";
+              setTimeout(() => {
+                this.mostrarError = false;
+                this.error = "";
+              }, 3000);
+            
+          })
+          .catch(()=>{
+            this.db.agregarUsuario(usuario).then(()=>{
+            this.authService.signIn(usuario);
+          });
         });
-      });
+      }, 1000);
+      
       
       
     }

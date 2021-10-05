@@ -6,7 +6,8 @@
     <h4 class="explicacion" style="bottom: 50%;">Nota: Solo se podrá elegir una de estas ultimas, o ninguna en el caso de considerar imposible ganar la mano.</h4><br><br>    
     <button (click)="ComenzarJuego()" id="btnComenzar">Comenzar Juego</button>
 </div>
-<div *ngIf="empezoElJuego" style="margin-left: 2%;">
+<div id="spinner" [hidden]="!mostrarSpinner"></div>
+<div *ngIf="empezoElJuego" style="margin-left: 2%;" id="principal">
     <label id="cartasJug">MI MANO</label><label id="cartasJug" style="margin-left: 12%;">MANO DEL RIVAL</label><br>
     <!-- HERO -->
     <img [src]='simulacion.carta1H.img' id="imgCarta" style="left:2%;">

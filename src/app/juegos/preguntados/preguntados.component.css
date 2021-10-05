@@ -62,3 +62,31 @@ h1{
     font-size: 60px;
     text-shadow: -1px 0 rgb(251, 255, 24), 0 1px rgb(251, 255, 24), 1px 0 rgb(251, 255, 24), 0 -1px rgb(251, 255, 24);
 }
+
+#spinner{
+    position: fixed; 
+    bottom: 30%;
+    left: 44%; 
+    width: 80px;
+    height: 80px;
+
+  background: url("../../../assets//spinner.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 105%;
+  border-radius: 50%;
+  background-color: transparent;
+  opacity: 1;
+  z-index: 100;
+  
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin{
+    from {
+        transform: rotate(360deg);
+      }
+}

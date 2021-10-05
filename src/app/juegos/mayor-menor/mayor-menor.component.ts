@@ -19,6 +19,7 @@ export class MayorMenorComponent implements OnInit {
   public carta2:Carta = new Carta("X", "X");
   public deshabilitar = false;
   public reiniciar = false;
+  mostrarSpinner = false;
   constructor(private router:Router, private auth:AuthServiceService, private db:DbService) { }
 
   ngOnInit(): void {
@@ -116,12 +117,26 @@ export class MayorMenorComponent implements OnInit {
     this.manos = 0;
     this.deshabilitar = false;
     if (salir){
-      var alias = this.auth.getUsuarioLogueado().alias;
-      this.db.grabarJuego("mayormenor", alias, this.puntos);
-      this.puntos = 0;
-      this.router.navigate(['home']);
+      this.MostrarSpinner();
+      setTimeout(() => {
+        var alias = this.auth.getUsuarioLogueado().alias;
+        this.db.grabarJuego("mayormenor", alias, this.puntos);
+        this.puntos = 0;
+        this.router.navigate(['home']);
+      }, 1000);
+      
     }    
     else
       this.ComenzarJuego();
+  }
+
+  MostrarSpinner(){
+    this.mostrarSpinner = true;
+    (<HTMLInputElement>document.getElementById("principal")).style.opacity = "0.5";
+    setTimeout(() => {
+      this.mostrarSpinner = false;
+      (<HTMLInputElement>document.getElementById("principal")).style.opacity = "1";
+      this.ComenzarJuego();
+    }, 1000);
   }
 }

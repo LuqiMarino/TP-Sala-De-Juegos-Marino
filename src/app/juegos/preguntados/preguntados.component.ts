@@ -161,9 +161,6 @@ export class PreguntadosComponent implements OnInit {
       if (nombre == this.juegoActual.personajes[indexGanador].nombre){  
         this.puntos++;
       }
-      else{
-        this.puntos--;
-      }
       this.CambiarColoresBotones(nombre, indexGanador).then((x)=>{
         this.EliminarPersonajeActivo(indexGanador);
         this.ComenzarJuego();

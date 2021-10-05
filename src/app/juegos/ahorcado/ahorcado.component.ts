@@ -167,7 +167,6 @@ export class AhorcadoComponent implements OnInit {
     // else if (this.cantidadErrores == 6)
     //   this.img1 = true;
     if (this.cantidadErrores == 6){
-      this.puntos = this.puntos - this.totalDePuntos;
       this.reiniciar = true;
     }
       

@@ -140,7 +140,6 @@ export class PokerComponent implements OnInit {
     }
     else{
       this.mensaje = this.simulacion.mensajePerdedor;
-      this.puntos--;
     }
   }
 

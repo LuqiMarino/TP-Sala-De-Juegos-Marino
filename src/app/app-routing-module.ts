@@ -11,6 +11,7 @@ import { PokerComponent } from './juegos/poker/poker.component'
 import { GuardGuard } from './servicios/guard.guard'
 import { PreguntadosComponent } from './juegos/preguntados/preguntados.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { ChatComponent } from './chat/chat.component';
 const routes: Routes = [  
     { path: 'quiensoy', component: QuiensoyComponent, canActivate: [GuardGuard] },
     { path: 'home', component: HomeComponent, canActivate: [GuardGuard] },
@@ -21,13 +22,14 @@ const routes: Routes = [
     { path: 'poker', component: PokerComponent, canActivate: [GuardGuard] },
     { path: 'preguntados', component: PreguntadosComponent, canActivate: [GuardGuard] },
     { path: 'ranking', component: RankingComponent, canActivate: [GuardGuard] },
+    { path: 'chat', component: ChatComponent, canActivate: [GuardGuard] },
     { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 
 @NgModule({
   declarations: [], 
-  imports:[RouterModule.forRoot(routes)], //CommonModule,
+  imports:[RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 

@@ -39,4 +39,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['ranking']);
   }
 
+  IrAChat(){
+    this.router.navigate(['chat']);
+  }
+
 }

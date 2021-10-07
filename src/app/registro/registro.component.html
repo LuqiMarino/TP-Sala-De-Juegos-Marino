@@ -1,19 +1,18 @@
 <div id="spinner" [hidden]="!mostrarSpinner"></div>
 <img id="fondo" src="../../assets//fondo1.PNG" alt="">
 <button *ngIf="mostrarError" id="error">{{error}}</button>
-<div style="background-color: lightgrey;">
+<div>
 
     <div style="margin-left: 40%;" id="principal">
         <label>Mail:</label><br>
-        <input type="text" id="mail" placeholder="Ingrese su mail" style="border: 1px solid grey;"><br><br>
+        <input type="text" id="mail" placeholder="Ingrese su mail" style="border: 1px solid grey; width: 350px;"><br><br>
         <label>Contraseña:</label><br>
-        <input type="password" id="pw" placeholder="Ingrese su contraseña" style="border: 1px solid grey;"><br><br>
+        <input type="password" id="pw" placeholder="Ingrese su contraseña" style="border: 1px solid grey; width: 350px;"><br><br>
         <label>Alias:</label><br>
-        <input type="text" id="alias" placeholder="Ingrese su alias" style="border: 1px solid grey;"><br><br>
-
-        <button (click)="Registrarse()">Registrarse</button>
-        <button style="margin-left: 2%;" (click)="Limpiar()">Limpiar</button><br><br>
-        <button (click)="IrALogin()">Volver</button>
+        <input type="text" id="alias" placeholder="Ingrese su alias" style="border: 1px solid grey; width: 350px;"><br><br>
+        <br><br><br>
+        <button (click)="Registrarse()" id="btnReg">Registrarse</button><br><br>
+        <button (click)="Limpiar()" id="btnLog">Limpiar</button><br><br>
+        <button (click)="IrALogin()" id="btnLimp">Volver</button>
     </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </div>

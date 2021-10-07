@@ -1,0 +1,14 @@
+<div *ngIf="cargoTodo" class="principal" id="principal">
+    <h1>Grupo de Chat de Sala de Juegos</h1>
+    <div *ngFor="let msj of mensajesList" class="todosLosMensajes">    
+        <div [ngClass]="{'text-right': msj.alias == aliasLog, 'text-left': msj.alias != aliasLog}">
+        <span class="badge badge-dark">{{msj.alias}}</span><label>{{msj.fechaString}}</label><br>
+        <span class="badge badge-light">{{msj.texto}}</span>
+        </div>
+    <br><br>
+    </div>
+    <div class="nvoMensaje">
+        <input class="txtNuevoMensaje" id="nuevoMensaje" type="text" placeholder="Escriba su mensaje">
+        <button class="btnNuevoMensaje" (click)="EnviarMensaje()">Enviar</button>
+    </div>
+</div>

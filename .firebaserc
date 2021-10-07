@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "tpsaladejuegosmarino"
+  },
+  "targets": {
+    "tpsaladejuegosmarino": {
+      "hosting": {
+        "SalaDeJuegosLucasMarino": [
+          "tpsaladejuegosmarino"
+        ]
+      }
+    }
   }
 }

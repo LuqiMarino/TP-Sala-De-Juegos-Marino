@@ -83,4 +83,19 @@ h1{
     cursor: pointer;
 }
 
+#chat{
+    background-color: rgb(245, 65, 236);
+    width: 90%;
+    height: 80px;
+    margin-left: 4%;
+    position: absolute;
+    border-radius: 15px;
+    border: solid 2px black;
+    font-weight: bold;
+    font-size: 40px;
+    z-index: 3;
+    cursor: pointer;
+    bottom: 5%;
+}
+
 

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { getFirestore } from 'firebase/firestore';
 import { collection, addDoc, getDocs, getDoc } from "firebase/firestore";
+//import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
 import { Usuario } from '../clases/Usuario';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,10 @@ export class DbService {
   db = getFirestore();
   public usuariosList:any = [];
   public usuarioLogueado:Usuario = new Usuario("", "");
-  constructor() { }
+  //private chatRef:AngularFirestoreCollection;
+  constructor(/*private store:AngularFirestore*/) {
+    // this.chatRef = this.store.collection('chat');
+   }
 
   public async agregarUsuario(user:Usuario){
     var huboError = false;    
@@ -51,8 +56,23 @@ export class DbService {
         fecha: fechaHora
       });
     
-      //console.log("Documento agregado ID: ", docRef.id);
-      //ACA PODRIA MODIFICAR EL DOCUMENTO Y PONERLE EL ID
+    } catch (e) {
+      console.error("Error: ", e);
+    }
+  }
+
+  public async grabarMensaje(alias:string, texto:string){
+    try {
+      var hoy = new Date();
+      var fecha = hoy.getDate() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getFullYear();
+      var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+      var fechaHora = fecha + ' ' + hora;
+      const docRef = await addDoc(collection(this.db, "chat"), { 
+        alias: alias,
+        texto: texto,
+        fecha: fechaHora
+      });
+    
     } catch (e) {
       console.error("Error: ", e);
     }
@@ -102,6 +122,10 @@ export class DbService {
       }, 1000);
     })
   }
+
+  // public obtenerMensajes(){
+  //   return this.chatRef.valueChanges() as Observable<any[]>;
+  // }
 
   public validarUsuarioRegistrado(usuario:Usuario){
     return new Promise((resolve, reject)=>{

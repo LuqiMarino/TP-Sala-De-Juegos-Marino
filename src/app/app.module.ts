@@ -14,12 +14,14 @@ import { environment } from 'src/environments/environment';
 
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+//import { AngularFirestoreModule } from '@angular/fire/compat/firestore'
 import { MayorMenorComponent } from './juegos/mayor-menor/mayor-menor.component';
 import { AhorcadoComponent } from './juegos/ahorcado/ahorcado.component';
 import { PokerComponent } from './juegos/poker/poker.component';
 import { PreguntadosComponent } from './juegos/preguntados/preguntados.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RankingComponent } from './ranking/ranking.component';
+import { ChatComponent } from './chat/chat.component';
 
 const app = initializeApp(environment.firebaseConfig);
 const db = getFirestore();
@@ -36,14 +38,16 @@ const db = getFirestore();
     AhorcadoComponent,
     PokerComponent,
     PreguntadosComponent,
-    RankingComponent
+    RankingComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    //AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
